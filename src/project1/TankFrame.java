@@ -9,15 +9,12 @@ import java.sql.SQLOutput;
 
 public class TankFrame extends Frame {
 
-//    int x = 200,y = 200;
-//    Dir dir = Dir.DOWN;
-//    final int SPEED = 10; // 坦克的速度
-
-    // 将上面属于坦克的属性封装成坦克类
+    // 将属于坦克的属性封装成坦克类
     // 之后使用时直接实例化，代码更清爽
-    Tank myTank = new Tank(200,200,Dir.DOWN);
+    Tank myTank = new Tank(200,200,Dir.DOWN); // 坦克
+    Bullet b = new Bullet(300,300,Dir.DOWN); // 子弹
 
-
+    // 构造函数
     public TankFrame(){
 
         // new一个窗口
@@ -57,28 +54,10 @@ public class TankFrame extends Frame {
         // 填充一个坐标是（200,200）大小是50*50的矩形
 //        g.fillRect(200,200,50,50);
 
-        //该行是对下面画坦克以及移动的代码进行封装
-        myTank.paint(g);
-
+        //该行是对画坦克以及移动的代码进行封装
         // 让添加的这个矩形能够移动
-//        g.fillRect(x,y,50,50);
-//        switch (dir){
-//            case LEFT:
-//                x -= SPEED;
-//                break;
-//            case UP:
-//                y -= SPEED;
-//                break;
-//            case RIGHT:
-//                x += SPEED;
-//                break;
-//            case DOWN:
-//                y += SPEED;
-//                break;
-//
-//        }
-//        x += 10;
-//        y += 10;
+        myTank.paint(g); // 画出坦克
+        b.paint(g); // 画出子弹
     }
 
     class MyKeyListener extends KeyAdapter {
@@ -163,11 +142,6 @@ public class TankFrame extends Frame {
         }
 
         private void setMainTankDir(){
-
-//            if(bL) dir = Dir.LEFT;
-//            if(bU) dir = Dir.UP;
-//            if(bR) dir = Dir.RIGHT;
-//            if(bD) dir = Dir.DOWN;
 
             // 不按键静止
             if(!bL && !bU && !bR && !bD) myTank.setMoving(false);

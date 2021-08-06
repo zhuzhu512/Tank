@@ -7,7 +7,8 @@ public class Tank {
 
     private int x, y;
     private Dir dir = Dir.DOWN;
-    private  static  final  int SPEED = 10;
+    // 坦克速度
+    private  static  final  int SPEED = 5;
 
     // 坦克静止
     private boolean moving = false;
