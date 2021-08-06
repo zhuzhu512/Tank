@@ -9,7 +9,15 @@ import java.sql.SQLOutput;
 
 public class TankFrame extends Frame {
 
-    int x = 200,y = 200;
+//    int x = 200,y = 200;
+//    Dir dir = Dir.DOWN;
+//    final int SPEED = 10; // 坦克的速度
+
+    // 将上面属于坦克的属性封装成坦克类
+    // 之后使用时直接实例化，代码更清爽
+    Tank myTank = new Tank(200,200,Dir.DOWN);
+
+
     public TankFrame(){
 
         // new一个窗口
@@ -49,8 +57,26 @@ public class TankFrame extends Frame {
         // 填充一个坐标是（200,200）大小是50*50的矩形
 //        g.fillRect(200,200,50,50);
 
+        //该行是对下面画坦克以及移动的代码进行封装
+        myTank.paint(g);
+
         // 让添加的这个矩形能够移动
-        g.fillRect(x,y,50,50);
+//        g.fillRect(x,y,50,50);
+//        switch (dir){
+//            case LEFT:
+//                x -= SPEED;
+//                break;
+//            case UP:
+//                y -= SPEED;
+//                break;
+//            case RIGHT:
+//                x += SPEED;
+//                break;
+//            case DOWN:
+//                y += SPEED;
+//                break;
+//
+//        }
 //        x += 10;
 //        y += 10;
     }
@@ -93,8 +119,10 @@ public class TankFrame extends Frame {
                     break;
             }
 
-            x = bL ? (bR ? x : x - 10) : (bR ? x + 10 : x);
-            y = bU ? (bD ? y : y - 10) : (bD ? y + 10 : y);
+            setMainTankDir();
+            // 我写的控制方向的语句
+//            x = bL ? (bR ? x : x - 10) : (bR ? x + 10 : x);
+//            y = bU ? (bD ? y : y - 10) : (bD ? y + 10 : y);
 
 //            System.out.println("key pressed");
 //            x += 30;
@@ -131,6 +159,29 @@ public class TankFrame extends Frame {
                 default:
                     break;
             }
+            setMainTankDir();
+        }
+
+        private void setMainTankDir(){
+
+//            if(bL) dir = Dir.LEFT;
+//            if(bU) dir = Dir.UP;
+//            if(bR) dir = Dir.RIGHT;
+//            if(bD) dir = Dir.DOWN;
+
+            // 不按键静止
+            if(!bL && !bU && !bR && !bD) myTank.setMoving(false);
+            else{
+
+                myTank.setMoving(true); // 设置坦克移动
+
+                // 封装后的修改
+                if(bL) myTank.setDir(Dir.LEFT);
+                if(bU) myTank.setDir(Dir.UP);
+                if(bR) myTank.setDir(Dir.RIGHT);
+                if(bD) myTank.setDir(Dir.DOWN);
+            }
+
         }
 
     }
